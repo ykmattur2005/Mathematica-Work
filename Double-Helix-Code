@@ -1,0 +1,7 @@
+Clear[x, y, z, helixA, helixB, lines, t, s, a];
+{x[t_], y[t_], z[t_]} = {Cos[t], Sin[t], t};
+helixA = ParametricPlot3D[{x[t], y[t], z[t]} + 0.25{Cos[s], Sin[s], 0}, {t, -2 Pi, 2 Pi}, {s, 0, 2 Pi}];
+helixB = ParametricPlot3D[{-x[t], -y[t], z[t]} + 0.25{Cos[s], Sin[s], 0}, {t, -2 Pi, 2 Pi}, {s, 0, 2 Pi}];
+lines = {};
+For[a = -2 Pi, a <= 2 Pi, a = a + Pi/4, AppendTo[lines, ParametricPlot3D[{x[a] * t, y[a] * t, z[a]}, {t, -1, 1}, PlotStyle -> {Red, Thickness[0.05]}]]];
+Show[Axes3D[0], helixA, helixB, lines, ViewPoint -> CMView, Boxed -> False, PlotRange -> All]
